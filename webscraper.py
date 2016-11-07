@@ -35,18 +35,18 @@ for letter in alphabet:
 
 	soup = BeautifulSoup(html)
 
-	table = soup.find('table', attrs={'class': 'tblPesquisas'}) #apanha tabela dos alimentos
+	table = soup.find('table', attrs={'class': 'tblPesquisas'}) #catch food table
 
-	list_of_food = [] #lista de alimentos
+	list_of_food = [] #food table
 
-	for row in table.findAll('tr'): #por cada linha
-	    for cell in row.findAll('td'): #por cada coluna/celula
-	        for link in cell.findAll('a'): #por cada referencia com link
+	for row in table.findAll('tr'): #each line
+	    for cell in row.findAll('td'): #each column/cell
+	        for link in cell.findAll('a'): #each reference with link
 				foodRecord = (link['href'], link.contents[0])
 				food = ",".join(foodRecord)
 				list_of_food.append(food)
 
-	#parse aos links da comida
+	#parse food link
 	for food in list_of_food:
 		url = food.split(',')[0]
 		foodName = food.split(',')[1]
